@@ -1,10 +1,8 @@
 const fs = require('fs');
 const path = require('path');
 
-// Ścieżka do pliku contacts.json
 const contactsPath = path.join(process.cwd(), 'db', 'contacts.json');
 
-// Lista wszystkich kontaktów
 function listContacts() {
   fs.readFile(contactsPath, 'utf8', (err, data) => {
     if (err) throw err;
@@ -13,7 +11,6 @@ function listContacts() {
   });
 }
 
-// Wyszukiwanie kontaktu po ID
 function getContactById(contactId) {
   fs.readFile(contactsPath, 'utf8', (err, data) => {
     if (err) throw err;
@@ -23,7 +20,6 @@ function getContactById(contactId) {
   });
 }
 
-// Usuwanie kontaktu
 function removeContact(contactId) {
   fs.readFile(contactsPath, 'utf8', (err, data) => {
     if (err) throw err;
@@ -36,7 +32,6 @@ function removeContact(contactId) {
   });
 }
 
-// Dodawanie nowego kontaktu
 function addContact(name, email, phone) {
   fs.readFile(contactsPath, 'utf8', (err, data) => {
     if (err) throw err;
@@ -50,7 +45,6 @@ function addContact(name, email, phone) {
   });
 }
 
-// Eksportowanie funkcji
 module.exports = {
   listContacts,
   getContactById,
