@@ -1,5 +1,5 @@
-const { listContacts, getContactById, removeContact, addContact } = require('./contacts');
-const { Command } = require('commander');
+import { listContacts, getContactById, removeContact, addContact } from './contacts.mjs';
+import { Command } from 'commander';
 const program = new Command();
 
 program
@@ -13,6 +13,7 @@ program.parse(process.argv);
 const argv = program.opts();
 
 function invokeAction({ action, id, name, email, phone }) {
+  console.log('Provided action:', action);
   switch (action) {
     case 'list':
       listContacts();
@@ -31,7 +32,9 @@ function invokeAction({ action, id, name, email, phone }) {
       break;
 
     default:
-      console.warn('\x1B[31m Unknown action type!');
+      console.warn(
+        '\x1B[31m No action provided or unknown action type! Use -a with list, get, add, or remove.'
+      );
   }
 }
 

@@ -1,7 +1,12 @@
-const fs = require('fs');
-const path = require('path');
+import fs from 'fs';
+import path from 'path';
+import { fileURLToPath } from 'url';
+import { dirname } from 'path';
 
-const contactsPath = path.join(process.cwd(), 'db', 'contacts.json');
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
+
+const contactsPath = path.join(__dirname, 'db', 'contacts.json');
 
 function listContacts() {
   fs.readFile(contactsPath, 'utf8', (err, data) => {
@@ -45,9 +50,4 @@ function addContact(name, email, phone) {
   });
 }
 
-module.exports = {
-  listContacts,
-  getContactById,
-  removeContact,
-  addContact,
-};
+export { listContacts, getContactById, removeContact, addContact };
